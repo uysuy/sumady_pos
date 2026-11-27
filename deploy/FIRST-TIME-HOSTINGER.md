@@ -15,13 +15,32 @@ git clone https://github.com/uysuy/sumady_pos.git .
 cp deploy.sumady-pos.example.sh deploy.sh && chmod +x deploy.sh
 ```
 
-## 2. Env (optional PayWay)
+## 2. Env + PayWay sandbox example
 
 ```bash
 cd /opt/sumady-pos/pos-web
 cp .env.example .env
-# nano .env  — fill PAYWAY_* for sandbox KHQR
+nano .env
 ```
+
+Paste / fill (use your real ABA sandbox values — do not commit):
+
+```env
+HOST=127.0.0.1
+PORT=4003
+NODE_ENV=production
+
+# ABA PayWay sandbox — required for KHQR on checkout + CDS
+PAYWAY_MERCHANT_ID=your_sandbox_merchant_id
+PAYWAY_API_KEY=your_sandbox_api_key
+PAYWAY_BASE_URL=https://checkout-sandbox.payway.com.kh
+
+# Optional (not used by current KHQR HMAC flow)
+PAYWAY_RSA_PUBLIC_KEY=
+PAYWAY_RSA_PRIVATE_KEY=
+```
+
+After editing `.env`, always restart with `--update-env` (or `bash deploy.sh`) so PM2 reloads secrets.
 
 ## 3. Build + PM2 (once)
 

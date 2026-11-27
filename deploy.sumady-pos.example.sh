@@ -45,9 +45,13 @@ log "HEAD=$(git log -1 --oneline)"
 [[ -d "$WEB_DIR" ]] || die "missing $WEB_DIR"
 cd "$WEB_DIR"
 
-# Optional PayWay secrets — keep on server only (never in git)
+# PayWay secrets — keep on server only (never in git). See .env.example.
 if [[ ! -f .env ]]; then
-	log "WARN: no pos-web/.env — PayWay KHQR will be unconfigured until you copy .env.example"
+	log "creating pos-web/.env from .env.example — fill PAYWAY_* before testing KHQR"
+	cp .env.example .env
+	log "WARN: edit $WEB_DIR/.env (PAYWAY_MERCHANT_ID, PAYWAY_API_KEY, PAYWAY_BASE_URL)"
+elif ! grep -qE '^PAYWAY_MERCHANT_ID=.+' .env || ! grep -qE '^PAYWAY_API_KEY=.+' .env; then
+	log "WARN: PAYWAY_MERCHANT_ID / PAYWAY_API_KEY look empty — KHQR will stay in demo mode"
 fi
 
 log "npm ci + build"
