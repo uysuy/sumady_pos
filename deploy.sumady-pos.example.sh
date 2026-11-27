@@ -55,7 +55,10 @@ elif ! grep -qE '^PAYWAY_MERCHANT_ID=.+' .env || ! grep -qE '^PAYWAY_API_KEY=.+'
 fi
 
 log "npm ci + build"
-npm ci || die "npm ci failed"
+if ! npm ci; then
+	log "npm ci failed (lock out of sync?) — falling back to npm install"
+	npm install || die "npm install failed"
+fi
 NODE_OPTIONS=--max-old-space-size=4096 npm run build || die "npm run build failed"
 [[ -f "$WEB_DIR/build/index.js" ]] || die "missing build/index.js — adapter-node build failed"
 
