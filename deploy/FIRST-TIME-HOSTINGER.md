@@ -1,9 +1,10 @@
-# First-time Hostinger: `pos.25nov.tech`
+# First-time Hostinger: `pos.25nov.tech` (Apache)
 
 Same VPS family as **sumady-test** (`app.25nov.tech` → PM2 `:4002`).  
-POS uses **PM2 `sumady-pos-web` on `127.0.0.1:4003`**.
+POS uses **PM2 `sumady-pos-web` on `127.0.0.1:4003`**.  
+Public edge: **Apache** reverse proxy (not Nginx).
 
-Cloudflare DNS for `pos.25nov.tech` is already created (proxied). Until Nginx has a dedicated `server_name`, the hostname may show another 25nov site.
+Cloudflare DNS for `pos.25nov.tech` is already created (proxied). Until Apache has a dedicated `ServerName`, the hostname may show another 25nov site.
 
 ## 1. Clone (once)
 
@@ -47,23 +48,17 @@ After editing `.env`, always restart with `--update-env` (or `bash deploy.sh`) s
 ```bash
 cd /opt/sumady-pos
 bash deploy.sh
-# or first time manually:
-# cd pos-web && npm ci && npm run build && pm2 start ecosystem.config.cjs && pm2 save
 curl -sI http://127.0.0.1:4003/ | head -3
 ```
 
-## 4. Nginx (once) — required so `pos.25nov.tech` is not the wrong site
+## 4. Apache (once) — required so `pos.25nov.tech` is not the wrong site
 
 ```bash
-sudo cp /opt/sumady-pos/deploy/nginx-pos.25nov.tech.conf /etc/nginx/sites-available/pos.25nov.tech
-sudo ln -sf /etc/nginx/sites-available/pos.25nov.tech /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-```
-
-If other sites use certbot SSL, issue a cert (or copy the SSL block from `app.25nov.tech`):
-
-```bash
-sudo certbot --nginx -d pos.25nov.tech
+sudo a2enmod proxy proxy_http proxy_wstunnel headers rewrite ssl
+sudo cp /opt/sumady-pos/deploy/apache-pos.25nov.tech.conf /etc/apache2/sites-available/pos.25nov.tech.conf
+sudo a2ensite pos.25nov.tech
+sudo apache2ctl configtest && sudo systemctl reload apache2
+sudo certbot --apache -d pos.25nov.tech
 ```
 
 Cloudflare SSL/TLS mode: **Full** (or Full strict after certbot).

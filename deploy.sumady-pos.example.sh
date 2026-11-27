@@ -5,7 +5,7 @@
 #
 # Expect:
 #   Path /opt/sumady-pos          | branch main
-#   PM2 sumady-pos-web :4003      | Nginx server_name pos.25nov.tech
+#   PM2 sumady-pos-web :4003      | Apache ServerName pos.25nov.tech
 #
 # Usage:
 #   bash /opt/sumady-pos/deploy.sh
