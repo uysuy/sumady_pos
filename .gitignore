@@ -14,6 +14,9 @@ dist/
 **/.env.*
 !**/.env.example
 
+# Host-local deploy script (copy from deploy.sumady-pos.example.sh on the VPS)
+/deploy.sh
+
 # OS / editor
 .DS_Store
 Thumbs.db
