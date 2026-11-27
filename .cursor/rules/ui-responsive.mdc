@@ -1,0 +1,32 @@
+---
+description: All UI work must be responsive across phone, tablet, and desktop
+globs: pos-web/src/**/*.{svelte,css}
+alwaysApply: true
+---
+
+# UI must be responsive
+
+Whenever you create or change UI (Svelte, CSS, layouts, dialogs, POS screens), design for **phone, tablet, and desktop** — not a single fixed desktop layout.
+
+## Required
+
+- Use fluid layouts: `flex` / `grid`, `%` / `fr` / `minmax`, `clamp()` for type and spacing.
+- Breakpoints (Tailwind-style): phone default → `sm`/`md` tablet → `lg`/`xl` desktop.
+- Touch targets ≥ 44px on phone/tablet; avoid hover-only actions for primary flows.
+- No horizontal page scroll at common widths (360, 768, 1024, 1440).
+- Stack or hide secondary panels on small screens (e.g. brand pane above form, drawer → full-sheet).
+- Images/media: `max-width: 100%`, `object-fit`; never fixed widths that overflow.
+
+## Check before finishing a UI change
+
+1. ~360px phone (portrait)
+2. ~768px tablet
+3. ~1280px+ desktop / POS monitor
+
+If a layout only works at one width, it is not done.
+
+## Avoid
+
+- Fixed pixel widths for full-page shells (`width: 1200px` without max/overflow strategy)
+- Two-column splits that stay side-by-side on narrow phones without a stacked fallback
+- Desktop-only assumptions for login, checkout, CDS, KDS, cart, settings

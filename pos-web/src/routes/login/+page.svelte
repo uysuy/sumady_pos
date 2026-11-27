@@ -914,7 +914,29 @@
 		}
 	}
 
-	@media (max-width: 900px) {
+	/* Desktop / wide POS: keep keypad from stretching edge-to-edge */
+	@media (min-width: 1100px) {
+		.login-dock {
+			max-width: 26rem;
+			margin-inline: auto;
+			width: 100%;
+		}
+
+		.login-staff {
+			max-width: 26rem;
+			margin-inline: auto;
+			width: 100%;
+		}
+
+		.login-panel-head {
+			max-width: 26rem;
+			margin-inline: auto;
+			width: 100%;
+		}
+	}
+
+	/* Tablet: stack brand + form */
+	@media (max-width: 1024px) {
 		.login-screen {
 			grid-template-columns: 1fr;
 			grid-template-rows: auto minmax(0, 1fr);
@@ -924,26 +946,26 @@
 
 		.login-brand {
 			min-height: auto;
-			max-height: 38dvh;
+			max-height: 34dvh;
 			overflow: auto;
-			padding: 1.35rem 1.15rem 0.75rem;
+			padding: 1.25rem 1.1rem 0.65rem;
 		}
 
 		.login-shop {
-			font-size: 1.85rem;
+			font-size: clamp(1.5rem, 4vw, 1.85rem);
 		}
 
 		.login-art {
-			margin-top: 0.85rem;
-			max-width: 22rem;
+			margin-top: 0.65rem;
+			max-width: min(22rem, 100%);
 		}
 
 		.login-feature {
-			min-height: 2.6rem;
+			min-height: 2.4rem;
 		}
 
 		.login-feature-text {
-			font-size: 0.92rem;
+			font-size: 0.9rem;
 		}
 
 		.login-panel {
@@ -952,11 +974,76 @@
 			border-left: 0;
 			border-radius: 1.25rem 1.25rem 0 0;
 			flex: 1;
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
 		}
 
 		.login-lang {
-			top: 0.85rem;
-			right: 0.85rem;
+			top: 0.75rem;
+			right: 0.75rem;
+		}
+	}
+
+	/* Phone: compact brand, scrollable form, touch-friendly */
+	@media (max-width: 640px) {
+		.login-screen {
+			height: auto;
+			min-height: 100dvh;
+			overflow: auto;
+			grid-template-rows: auto auto;
+		}
+
+		.login-brand {
+			max-height: none;
+			padding: 1rem 1rem 0.5rem;
+		}
+
+		.login-mark {
+			width: 3rem;
+			height: 3rem;
+			margin-bottom: 0.65rem;
+		}
+
+		.login-art,
+		.login-feature,
+		.login-hint {
+			display: none;
+		}
+
+		.login-shop {
+			font-size: 1.55rem;
+		}
+
+		.login-tag {
+			font-size: 0.9rem;
+		}
+
+		.login-panel {
+			border-radius: 1.1rem 1.1rem 0 0;
+			padding: 1.1rem 1rem 1.25rem;
+		}
+
+		.login-staff {
+			max-height: 9.5rem;
+		}
+
+		.login-key {
+			min-height: 3rem;
+		}
+
+		.login-submit {
+			min-height: 2.85rem;
+		}
+	}
+
+	@media (max-width: 640px) and (max-height: 720px) {
+		.login-brand {
+			padding-top: 0.75rem;
+			padding-bottom: 0.35rem;
+		}
+
+		.login-mark {
+			display: none;
 		}
 	}
 </style>
