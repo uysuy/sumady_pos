@@ -984,7 +984,7 @@
 		}
 	}
 
-	/* Phone: compact brand, scrollable form, touch-friendly */
+	/* Phone: compact brand + compact keypad (must not eat the whole viewport) */
 	@media (max-width: 640px) {
 		.login-screen {
 			height: auto;
@@ -995,13 +995,13 @@
 
 		.login-brand {
 			max-height: none;
-			padding: 1rem 1rem 0.5rem;
+			padding: 0.85rem 1rem 0.4rem;
 		}
 
 		.login-mark {
-			width: 3rem;
-			height: 3rem;
-			margin-bottom: 0.65rem;
+			width: 2.5rem;
+			height: 2.5rem;
+			margin-bottom: 0.45rem;
 		}
 
 		.login-art,
@@ -1011,39 +1011,116 @@
 		}
 
 		.login-shop {
-			font-size: 1.55rem;
+			font-size: 1.4rem;
 		}
 
 		.login-tag {
-			font-size: 0.9rem;
+			font-size: 0.85rem;
+			margin-top: 0.25rem;
 		}
 
 		.login-panel {
 			border-radius: 1.1rem 1.1rem 0 0;
-			padding: 1.1rem 1rem 1.25rem;
+			padding: 0.9rem 0.9rem 1rem;
+		}
+
+		.login-panel-head {
+			padding-bottom: 0.35rem;
+		}
+
+		.login-title {
+			font-size: 1.25rem;
+		}
+
+		.login-sub {
+			font-size: 0.85rem;
 		}
 
 		.login-staff {
-			max-height: 9.5rem;
+			max-height: 7.5rem;
+			gap: 0.4rem;
+			padding-bottom: 0.45rem;
+		}
+
+		.login-staff-card {
+			padding: 0.5rem 0.65rem;
+		}
+
+		.login-dock {
+			padding: 0.35rem 0 0.65rem;
+		}
+
+		.login-pin-block {
+			margin-top: 0;
+		}
+
+		.login-dots {
+			gap: 0.4rem;
+			margin-top: 0.4rem;
+		}
+
+		.login-dot {
+			width: 0.55rem;
+			height: 0.55rem;
+		}
+
+		.login-selected,
+		.login-error {
+			margin-top: 0.3rem;
+			font-size: 0.8rem;
+		}
+
+		.login-pad {
+			gap: 0.35rem;
+			margin-top: 0.5rem;
+			max-width: 17rem;
+			width: 100%;
+			margin-inline: auto;
 		}
 
 		.login-key {
-			min-height: 3rem;
+			height: 2.45rem;
+			min-height: 2.45rem;
+			font-size: 1.1rem;
+			border-radius: 0.65rem;
+		}
+
+		.login-key.muted {
+			font-size: 0.75rem;
+		}
+
+		.login-key :global(svg) {
+			width: 1.05rem;
+			height: 1.05rem;
 		}
 
 		.login-submit {
-			min-height: 2.85rem;
+			margin-top: 0.55rem;
+			height: 2.55rem;
+			min-height: 2.55rem;
+			font-size: 0.95rem;
 		}
 	}
 
 	@media (max-width: 640px) and (max-height: 720px) {
 		.login-brand {
-			padding-top: 0.75rem;
-			padding-bottom: 0.35rem;
+			padding-top: 0.55rem;
+			padding-bottom: 0.25rem;
 		}
 
 		.login-mark {
 			display: none;
+		}
+
+		.login-pad {
+			max-width: 15.5rem;
+			gap: 0.28rem;
+		}
+
+		.login-key {
+			height: 2.2rem;
+			min-height: 2.2rem;
+			font-size: 1rem;
 		}
 	}
 </style>
