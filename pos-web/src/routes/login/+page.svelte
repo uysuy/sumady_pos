@@ -731,7 +731,7 @@
 	.login-dock {
 		flex-shrink: 0;
 		margin-top: auto;
-		padding: 0.85rem 0 1.25rem;
+		padding: 0.65rem 0 1rem;
 		border-top: 1px solid #e7eee8;
 		background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, #fff 28%);
 	}
@@ -859,18 +859,21 @@
 	.login-pad {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 0.55rem;
-		margin-top: 0.85rem;
+		gap: 0.4rem;
+		margin-top: 0.65rem;
+		max-width: 17.5rem;
+		width: 100%;
+		margin-inline: auto;
 	}
 
 	.login-key {
 		display: grid;
 		place-items: center;
-		height: 3.35rem;
-		border-radius: 0.85rem;
+		height: 2.7rem;
+		border-radius: 0.75rem;
 		border: 1px solid #dce5de;
 		background: #fff;
-		font-size: 1.35rem;
+		font-size: 1.15rem;
 		font-weight: 700;
 		color: #122018;
 		cursor: pointer;
@@ -895,10 +898,13 @@
 	}
 
 	.login-submit {
-		margin-top: 0.85rem;
+		margin-top: 0.65rem;
 		width: 100%;
-		height: 3rem;
-		font-size: 1rem;
+		max-width: 17.5rem;
+		margin-inline: auto;
+		display: flex;
+		height: 2.65rem;
+		font-size: 0.95rem;
 	}
 
 	@keyframes login-shake {
@@ -914,24 +920,79 @@
 		}
 	}
 
-	/* Desktop / wide POS: keep keypad from stretching edge-to-edge */
+	/* Wide panel: keep form column readable, keypad capped */
 	@media (min-width: 1100px) {
-		.login-dock {
-			max-width: 26rem;
+		.login-dock,
+		.login-staff,
+		.login-panel-head {
+			max-width: 22rem;
 			margin-inline: auto;
 			width: 100%;
 		}
+	}
 
-		.login-staff {
-			max-width: 26rem;
-			margin-inline: auto;
-			width: 100%;
+	/* 14" / short laptop viewports — compact vertical rhythm */
+	@media (max-height: 900px) {
+		.login-panel {
+			padding-top: 1.1rem;
 		}
 
 		.login-panel-head {
-			max-width: 26rem;
-			margin-inline: auto;
-			width: 100%;
+			margin-bottom: 0.55rem;
+		}
+
+		.login-title {
+			font-size: 1.35rem;
+		}
+
+		.login-staff-card {
+			padding: 0.55rem 0.7rem;
+		}
+
+		.login-avatar {
+			width: 2.25rem;
+			height: 2.25rem;
+		}
+
+		.login-dock {
+			padding: 0.5rem 0 0.75rem;
+		}
+
+		.login-dots {
+			margin-top: 0.4rem;
+		}
+
+		.login-pad {
+			max-width: 15.5rem;
+			gap: 0.3rem;
+			margin-top: 0.45rem;
+		}
+
+		.login-key {
+			height: 2.35rem;
+			font-size: 1.05rem;
+		}
+
+		.login-submit {
+			max-width: 15.5rem;
+			height: 2.45rem;
+			margin-top: 0.5rem;
+		}
+	}
+
+	@media (max-height: 760px) {
+		.login-pad {
+			max-width: 14.5rem;
+		}
+
+		.login-key {
+			height: 2.15rem;
+			font-size: 1rem;
+		}
+
+		.login-submit {
+			max-width: 14.5rem;
+			height: 2.3rem;
 		}
 	}
 

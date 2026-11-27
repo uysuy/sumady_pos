@@ -21,9 +21,10 @@ Whenever you create or change UI (Svelte, CSS, layouts, dialogs, POS screens), d
 
 1. ~360px phone (portrait)
 2. ~768px tablet
-3. ~1280px+ desktop / POS monitor
+3. ~1280×800 / 14" laptop (short height — use `max-height` media too)
+4. ~1440px+ desktop / POS monitor
 
-If a layout only works at one width, it is not done.
+If a layout only works at one width **or** overflows a short laptop viewport, it is not done.
 
 ## Avoid
 
